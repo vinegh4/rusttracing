@@ -10,6 +10,8 @@ fn main() {
     print!("P3\n{IMAGE_WIDTH} {IMAGE_HEIGHT}\n255\n");
 
     for j in 0..IMAGE_HEIGHT {
+        let scanlines_remaining : u32 = IMAGE_HEIGHT-j;
+        eprintln!("Scanlines remaining: {scanlines_remaining}");
         for i in 0..IMAGE_WIDTH {
             let r : f64 = i as f64 / (IMAGE_WIDTH as f64 - 1.0);
             let g : f64 = (IMAGE_HEIGHT - j - 1) as f64 / (IMAGE_HEIGHT as f64 - 1.0);

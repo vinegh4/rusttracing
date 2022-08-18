@@ -1,6 +1,6 @@
-//use std::fs::File;
-//use std::io::prelude::*;
-//use std::path::Path;
+#![warn(clippy::pedantic)]
+mod vector3;
+use crate::vector3::Vector3;
 
 const IMAGE_HEIGHT : u32 = 256;
 const IMAGE_WIDTH : u32 = 256;
@@ -17,11 +17,17 @@ fn main() {
             let g : f64 = (IMAGE_HEIGHT - j - 1) as f64 / (IMAGE_HEIGHT as f64 - 1.0);
             let b : f64 = 0.25;
 
-            let r_int : u32 = (255.999 * r) as u32;
-            let g_int : u32 = (255.999 * g) as u32;
-            let b_int : u32 = (255.999 * b) as u32;
-
-            print!("{r_int} {g_int} {b_int}\n");
+            let pixel = Vector3 {x: r, y: g, z: b};
+            print_pixel_val(pixel);
         }
     }
 }
+
+fn print_pixel_val(pixel : Vector3) {
+    let r_int : u32 = (255.999 * pixel.x) as u32;
+    let g_int : u32 = (255.999 * pixel.y) as u32;
+    let b_int : u32 = (255.999 * pixel.z) as u32;
+
+    println!("{r_int} {g_int} {b_int}");
+}
+    

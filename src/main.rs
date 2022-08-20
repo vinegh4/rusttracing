@@ -1,6 +1,7 @@
 #![warn(clippy::pedantic)]
 mod vector3;
 use crate::vector3::Vector3;
+mod raytracing;
 
 const IMAGE_HEIGHT : u32 = 256;
 const IMAGE_WIDTH : u32 = 256;

@@ -6,7 +6,7 @@ pub struct Ray {
 }
 
 
-fn cast_ray (ray: Ray, dist: f64) -> Vector3 {
+pub fn cast_ray (ray: Ray, dist: f64) -> Vector3 {
         ray.origin + (ray.direction  * dist)
 }
 

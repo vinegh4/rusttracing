@@ -14,7 +14,7 @@ fn main() {
     let viewport_height : f64 = 2.0;
     let viewport_width = ASPECT_RATIO * viewport_height;
     let focal_length : f64 = 1.0;
-
+    
     let origin : Vector3 = Vector3 {x: 0.0, y: 0.0, z:0.0};
     let horizontal : Vector3 = Vector3 {x: viewport_width, y: 0.0, z: 0.0};
     let vertical : Vector3 = Vector3 {x: 0.0, y: viewport_height, z: 0.0};
@@ -60,8 +60,8 @@ fn hit_sphere (center: Vector3, radius: f64, ray: &Ray) -> bool {
     let ray_offset: Vector3 = ray.origin - center;
     let a_quadratic: f64 = dot(ray.direction, ray.direction);
     let b_quadratic: f64 = 2.0 * dot(ray_offset, ray.direction);
-    let c_quadratic: f64 = dot(ray_offset, ray_offset) - radius.powf(2.0);
-    let discriminant: f64 = b_quadratic.powf(2.0) - 4.0 * a_quadratic * c_quadratic;
+    let c_quadratic: f64 = dot(ray_offset, ray_offset) - radius.powi(2);
+    let discriminant: f64 = b_quadratic.powi(2) - 4.0 * a_quadratic * c_quadratic;
     discriminant > 0.0
 }
                

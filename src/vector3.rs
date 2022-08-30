@@ -16,7 +16,7 @@ pub fn unit_vector(vector: Vector3) -> Vector3 {
 }
 
 pub fn dot(lhs: Vector3, rhs: Vector3) -> f64 {
-    (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z + rhs.z)
+    (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z)
 }
 
 impl ops::Add<Vector3> for Vector3 {

@@ -10,13 +10,13 @@ pub fn cast_ray (ray: Ray, dist: f64) -> Vector3 {
 }
 
 pub struct HitRecord {
-    hitpoint: Vector3,
-    normal: Vector3,
-    t: f64
+    pub hitpoint: Vector3,
+    pub normal: Vector3,
+    pub jt: f64
 }
 
 pub trait Hittable {
-    fn hit(ray: &Ray, t_min: f64, t_max: f64, hit_record: &mut HitRecord) -> bool;
+    pub fn hit(ray: &Ray, t_min: f64, t_max: f64, hit_record: &mut HitRecord) -> bool;
 }
 
 

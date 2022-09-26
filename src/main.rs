@@ -3,6 +3,8 @@ mod vector3;
 use crate::vector3::*;
 mod raytracing;
 use crate::raytracing::*;
+mod sphere;
+use crate::sphere::*;
 
 const IMAGE_WIDTH : u32 = 400;
 const ASPECT_RATIO : f64 = 16.0/9.0;
@@ -48,7 +50,7 @@ fn print_pixel_val(pixel : Vector3) {
 fn ray_color (ray: Ray) -> Vector3 {
     let t: f64  = hit_sphere(Vector3 {x: 0.0, y: 0.0, z: -1.0}, 0.5, &ray);
     if t > 0.0 {
-        let sphere_normal: Vector3 = unit_vector(cast_ray(ray, t) - Vector3 {x: 0.0, y: 0.0, z: -1.0});
+        let sphere_normal: Vector3 = unit_vector(cast_ray(&ray, t) - Vector3 {x: 0.0, y: 0.0, z: -1.0});
         Vector3 {x: sphere_normal.x + 1.0, y: sphere_normal.y + 1.0, z: sphere_normal.z + 1.0} * 0.5
     }    
     else { 

@@ -13,9 +13,9 @@ impl Hittable for Sphere {
     //given by the smallest root of the equation (smallest root means the closest intersect to the ray origin)
     fn hit(self, ray: &Ray, t_min: f64, t_max: f64) -> (bool, HitRecord) {
         let offset: Vector3 = ray.origin - self.center;
-        let a_quadratic: f64 = dot(ray.direction, ray.direction);
+        let a_quadratic: f64 = square_magnitude(ray.direction);
         let half_b_quadratic: f64 = dot(offset, ray.direction);
-        let c_quadratic: f64 = dot(offset, offset) - self.radius * self.radius;
+        let c_quadratic: f64 = square_magnitude(offset) - self.radius * self.radius;
         let discriminant: f64 = half_b_quadratic * half_b_quadratic - a_quadratic * c_quadratic;
         let mut record: HitRecord = HitRecord::new();
 
@@ -36,7 +36,7 @@ impl Hittable for Sphere {
 
         let hitpoint: Vector3 = cast_ray(ray, root);
         record.hitpoint = hitpoint;
-        record.normal = hitpoint - self.center;
+        record.normal = (hitpoint - self.center) / self.radius;
         record.t = root;
         (true, record)
     }

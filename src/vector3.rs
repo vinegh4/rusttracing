@@ -11,6 +11,10 @@ pub fn magnitude(vector: Vector3) -> f64 {
    (vector.x.powf(2.0) + vector.y.powf(2.0) + vector.z.powf(2.0)).sqrt()
 }
 
+pub fn square_magnitude(vector: Vector3) -> f64 {
+   vector.x.powf(2.0) + vector.y.powf(2.0) + vector.z.powf(2.0)
+}
+
 pub fn unit_vector(vector: Vector3) -> Vector3 {
     vector / magnitude(vector)
 }

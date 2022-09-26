@@ -48,29 +48,17 @@ fn print_pixel_val(pixel : Vector3) {
 }
 
 fn ray_color (ray: Ray) -> Vector3 {
-    let t: f64  = hit_sphere(Vector3 {x: 0.0, y: 0.0, z: -1.0}, 0.5, &ray);
-    if t > 0.0 {
-        let sphere_normal: Vector3 = unit_vector(cast_ray(&ray, t) - Vector3 {x: 0.0, y: 0.0, z: -1.0});
+    let sphere: Sphere = Sphere { center: Vector3{x: 0.0, y: 0.0, z: -1.0}, radius: 0.5};
+    let hit_result = sphere.hit(&ray, 0.0, 100.0);
+    let (hit, record) = hit_result;
+    if hit {
+        let sphere_normal: Vector3 = record.normal;
         Vector3 {x: sphere_normal.x + 1.0, y: sphere_normal.y + 1.0, z: sphere_normal.z + 1.0} * 0.5
     }    
     else { 
         let unit_direction: Vector3 = unit_vector(ray.direction);
         let t: f64 = 0.5*(unit_direction.y + 1.0);
         Vector3 {x: 1.0, y: 1.0, z: 1.0} * (1.0 - t) + Vector3 {x: 0.5, y: 0.7, z: 1.0} * t
-    }
-}
-
-fn hit_sphere (center: Vector3, radius: f64, ray: &Ray) -> f64 {
-    let ray_offset: Vector3 = ray.origin - center;
-    let a_quadratic: f64 = dot(ray.direction, ray.direction);
-    let b_quadratic: f64 = 2.0 * dot(ray_offset, ray.direction);
-    let c_quadratic: f64 = dot(ray_offset, ray_offset) - radius.powi(2);
-    let discriminant: f64 = b_quadratic.powi(2) - 4.0 * a_quadratic * c_quadratic;
-    if discriminant < 0.0 {
-        -1.0
-    }
-    else {
-        (-1.0 * b_quadratic - discriminant.sqrt()) / (2.0 * a_quadratic)
     }
 }
                

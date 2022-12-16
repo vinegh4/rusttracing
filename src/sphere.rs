@@ -36,8 +36,9 @@ impl Hittable for Sphere {
 
         let hitpoint: Vector3 = cast_ray(ray, root);
         record.hitpoint = hitpoint;
-        record.normal = (hitpoint - self.center) / self.radius;
         record.t = root;
+        let outward_normal: Vector3 = (record.hitpoint - self.center) / self.radius;
+        record.set_face_normal(ray, &outward_normal);
         (true, record)
     }
 }
